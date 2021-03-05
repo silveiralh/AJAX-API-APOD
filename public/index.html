@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>NASA API</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+
+  </head>
+  <body>
+    <div class="side">
+        <header class="side-column"> 
+            <div class="light">
+                <h1>Picture of the Day</h1>
+                <input type="text" name="busca" value="" placeholder="AAAA-MM-DD"/>
+                <input type="date">
+                <div class="center">
+                    <button>BUSCAR</button>
+                </div>
+            </div>
+            
+        </header> 
+
+        <div class="content">
+            <main class="row">
+                
+                <article>
+
+                    <div class="picture">
+                        <img src="https://apod.nasa.gov/apod/image/2004/PathNorth_Konang_2500.jpg" alt="">
+                    </div>
+
+                    <div class="content__page-header entry__header">
+                        <h1 class="title">
+                        < TITULO DA IMAGEM >
+                        </h1>
+                        <img>
+                        <ul>
+                            <li>Por:</li>
+                            <li>Data:</li>
+                        </ul>
+                        <h4 >Descrição: </h4>
+                    </div> 
+                </article> 
+            </main> 
+        </div> 
+    </div> 
+</body>
+</html>
