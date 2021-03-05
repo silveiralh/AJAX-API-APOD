@@ -23,32 +23,60 @@
             <main class="row">
                 <article>
                     <div class="picture">
-                        <img src="https://apod.nasa.gov/apod/image/2004/PathNorth_Konang_2500.jpg" alt="">
-                    </div>
-
-                    <div class="content__page-header entry__header">
-                        <h1 class="title">
-                        < TITULO DA IMAGEM >
-                        </h1>
-                        <img>
+                        <!-- Tag de Texto que vai ter o conteudo escondido depois da busca -->
+                        <h1 ><a id="presentation" href="https://api.nasa.gov/">API APOD - NASA</a></h1>
+                        <!-- Tag da Imagem que vai ter a src substituida depois da busca -->
+                        <img id="picture" src="" alt="">
+                        <!-- Tag de título que vai ter o conteudo substituido depois da busca -->
+                    </div>    
+                    <div>
+                        <h1 class="title" id="title"></h1>
+                        <!-- Tag de lista que vai ter o conteudo substituido depois da busca -->
                         <ul>
-                            <li>Por:</li>
-                            <li>Data:</li>
                         </ul>
-                        <h4 >Descrição: </h4>
+                        <!-- Tag de descrição que vai ter o conteudo substituido depois da busca -->
+                        <h4 id="description"></h4>
+                        <p id="explanation"></p>
                     </div> 
                     <script type="text/javascript" charset="utf-8">//Script para a chamada AJAX
                         //Cria o evento de click no botão BUSCAR
                         document.querySelector("button").addEventListener("click", function () { 
+                            var container = document.querySelector("ul");
                             //Cria variável que será utilizada na busca
                             var query = document.querySelector("input").value;
                             axios
                                 //Link da API APOD da nasa com a APIKey gerada no site
                                 .get("https://api.nasa.gov/planetary/apod?api_key=79ycm95pooOrKtc57kkez7dGAw4E3Fe92MGSVqt4&date=" + query)
                                 .then(function (res) {
-                                    var title = res.data.title;
-                                    var explanation = res.data.explanation;
-                                    var date = res.data.date;
+                                    //Variáveis com os dados do retorno da pesquisa
+                                    var title = res.data.title,
+                                        credits ="Por: "+ res.data.copyright,
+                                        url = res.data.hdurl,
+                                        date = "Data: "+ res.data.date;
+                                    //Variáveis dos componentes criados para exibir o retorno da pesquisa
+                                    var li = document.createElement("li"),
+                                        li2 = document.createElement("li"),
+                                        h1 = document.getElementById("title"),
+                                        img = document.getElementById("picture");
+                                        explanation = document.getElementById("explanation");
+                                        h4 = document.getElementById("description");
+                                        ul = document.querySelector("ul");
+                                        presentation = document.getElementById("presentation");
+                                    //Alterando o DOM com as informações da pesquisa
+                                    img.src= url;
+                                    presentation.innerHTML="";
+                                    h1.innerHTML = title;
+                                    li.innerHTML = date;
+                                    ul.innerHTML="";
+                                    ul.appendChild(li)
+                                    //Verificando se tem créditos neste registro, se tiver inclui no DOM
+                                    if(res.data.copyright!=undefined){
+                                        li2.innerHTML=credits;
+                                        ul.appendChild(li2);
+                                    }
+                                    h4.innerHTML = "Descrição";
+                                    explanation.innerHTML= res.data.explanation;
+        
                                 });
                         });
 
