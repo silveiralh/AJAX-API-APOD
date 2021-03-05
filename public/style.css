@@ -24,12 +24,14 @@ button{
     text-align: center;
     background-color: #d3d3d3;
     border: 0 solid #d3d3d3;
+    margin-top: 15px;
+    
     
 
     
 }
 input{
-    display: block;
+    display: inline-block;
     height: 25px;
     padding: 15px 0 15px;
     border: 0;
@@ -48,14 +50,10 @@ input{
 li{
     list-style-type: none;
 }
-.light{
-    align-items: center;
-    align-content: center;
+.center{
+    text-align: center;
     position: relative;
     color: azure;
-}
-.center{
-    position: absolute;
 }
 
 .side{
@@ -106,6 +104,7 @@ li{
 }
 
 img{
+    z-index: -1;
     width:750px;
     position: absolute;
 }

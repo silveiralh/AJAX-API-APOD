@@ -11,22 +11,17 @@
   <body>
     <div class="side">
         <header class="side-column"> 
-            <div class="light">
+            <div class="light center">
                 <h1>Picture of the Day</h1>
-                <input type="text" name="busca" value="" placeholder="AAAA-MM-DD"/>
-                <input type="date">
-                <div class="center">
-                    <button>BUSCAR</button>
-                </div>
+               <!--- <input type="text" name="busca" value="" placeholder="AAAA-MM-DD"/> -->
+                <input type="date" min="1997-06-16" max="">         
+                <button>BUSCAR</button>
             </div>
             
         </header> 
-
         <div class="content">
             <main class="row">
-                
                 <article>
-
                     <div class="picture">
                         <img src="https://apod.nasa.gov/apod/image/2004/PathNorth_Konang_2500.jpg" alt="">
                     </div>
@@ -42,6 +37,22 @@
                         </ul>
                         <h4 >Descrição: </h4>
                     </div> 
+                    <script type="text/javascript" charset="utf-8">//Script para a chamada AJAX
+                        //Cria o evento de click no botão BUSCAR
+                        document.querySelector("button").addEventListener("click", function () { 
+                            //Cria variável que será utilizada na busca
+                            var query = document.querySelector("input").value;
+                            axios
+                                //Link da API APOD da nasa com a APIKey gerada no site
+                                .get("https://api.nasa.gov/planetary/apod?api_key=79ycm95pooOrKtc57kkez7dGAw4E3Fe92MGSVqt4&date=" + query)
+                                .then(function (res) {
+                                    var title = res.data.title;
+                                    var explanation = res.data.explanation;
+                                    var date = res.data.date;
+                                });
+                        });
+
+                    </script>
                 </article> 
             </main> 
         </div> 
